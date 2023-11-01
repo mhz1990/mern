@@ -10,3 +10,17 @@ const dbo = require("mongodb").ObjectId;
 
 // This helps convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
+
+
+// This section will help you get a list of all the records.
+recordRoutes.route("/record").get(function (req, res) {
+    let db_connect = dbo.getDb("employees");
+    db_connect
+        .collection("records")
+        .find({})
+        .toArray(function (err, result) {
+            if (err) throw err;
+            res.json(result);
+        });
+        
+})
